@@ -4,11 +4,11 @@
 /* ==== neuron_output ==== */
 
 void neuron_output::_initialize () {
-  std::cout<<"In neuron output init\n";
+  _buffer = new unsigned[128];
 }
 
 void neuron_output::_release () {
-  std::cout<<"In neuron output release\n";
+  delete [] _buffer;
 }
 
 /* ==== neuron_input ==== */

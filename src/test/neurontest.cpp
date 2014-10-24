@@ -1,6 +1,6 @@
 
 #include <iostream>
-#include "neuron.h"
+#include "../neuron/neuron.h"
 
 int main (int argc, char *argv[]) {
   neuron n0;
