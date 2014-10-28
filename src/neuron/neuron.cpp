@@ -13,35 +13,25 @@ void neuron_output::_release () {
 
 /* ==== neuron_input ==== */
 
-void neuron_input::_initialize () {
-  std::cout<<"In neuron input init\n";
+void neuron_input::_initialize () { 
+  
 }
 
-void neuron_input::_release () {
-  std::cout<<"In neuron output release\n";
-}
+void neuron_input::_release () { }
 
-void operator>> (neuron_input &n_in, std::string &s) {
-  std::cout << "detected input\n";
+std::istream& operator>> (std::istream &input, neuron_input &n) {
+  input >> n._in;
+  return input;
 }
-
 
 /* ==== neuron_state ==== */
 
-void neuron_state::_initialize () {
-  std::cout<<"In neuron state init\n";
-}
+void neuron_state::_initialize () { }
 
-void neuron_state::_release () {
-  std::cout<<"In neuron state release\n";
-}
+void neuron_state::_release () { }
 
 /* ==== neuron ==== */
 
-neuron::neuron() {
-  std::cout<<"In neuron CONSTRUCTOR\n";
-}
+neuron::neuron() { }
 
-neuron::~neuron() {
-  std::cout<<"In neuron DESTRUCTOR\n";
-}
+neuron::~neuron() { }

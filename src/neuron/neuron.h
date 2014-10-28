@@ -2,6 +2,7 @@
 #define __neuron_header__
 
 #include <iostream>
+#include <streambuf>
 
 /** 
  * A generalized object of a neural network. 
@@ -22,11 +23,11 @@ class neuron_input : public neural_object {
   public:  
     neuron_input() : neural_object() { _initialize(); }
     ~neuron_input() { _release(); }
-    friend void operator>>(neuron_input&, std::string&);
+    friend std::istream& operator>> (std::istream&, neuron_input&);
   private:
-    unsigned *_buffer;
     void _initialize();
     void _release();
+    std::istream *_in;
 };
 
 /**
@@ -34,7 +35,7 @@ class neuron_input : public neural_object {
  * A classical node has a one output signal.
  */
 class neuron_output : public neural_object {
-  public:  
+  public:
     neuron_output() : neural_object() { _initialize(); }
     ~neuron_output() { _release(); }
   private:
@@ -55,7 +56,6 @@ class neuron_state : public neural_object {
     void _initialize();
     void _release();
 };
-
 
 /**
  * A general purpose neuron that acts as a single node in a neural network.
