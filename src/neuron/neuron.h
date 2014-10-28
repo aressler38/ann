@@ -1,6 +1,8 @@
 #ifndef __neuron_header__
 #define __neuron_header__
 
+#include <iostream>
+
 /** 
  * A generalized object of a neural network. 
  * @abstract 
@@ -20,6 +22,7 @@ class neuron_input : public neural_object {
   public:  
     neuron_input() : neural_object() { _initialize(); }
     ~neuron_input() { _release(); }
+    friend void operator>>(neuron_input&, std::string&);
   private:
     unsigned *_buffer;
     void _initialize();

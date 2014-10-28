@@ -21,6 +21,11 @@ void neuron_input::_release () {
   std::cout<<"In neuron output release\n";
 }
 
+void operator>> (neuron_input &n_in, std::string &s) {
+  std::cout << "detected input\n";
+}
+
+
 /* ==== neuron_state ==== */
 
 void neuron_state::_initialize () {
