@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <streambuf>
+#include <vector>
 
 namespace anne {
 
@@ -19,14 +20,13 @@ namespace anne {
     public: 
       neural_object() { }
       virtual ~neural_object() { }
-      virtual void _initialize() = 0;
       virtual void _release() = 0;
-    private:
-      var::COLORS _color;
   };
 
   /**
    * An object that accepts inputs for a neuron.
+   *
+   * @deprecated
    */
   class neuron_input : public neural_object {
     public:  
@@ -36,12 +36,11 @@ namespace anne {
     private:
       void _initialize();
       void _release();
-      std::istream *_in;
+      std::vector<float>* _in;
   };
 
   /**
    * An object that governs the output of a neuron.
-   * A classical node has a one output signal.
    */
   class neuron_output : public neural_object {
     public:
@@ -58,25 +57,33 @@ namespace anne {
    */
   class neuron_state : public neural_object {
     public:  
-      neuron_state() : neural_object() { _initialize(); }
+      neuron_state();
       ~neuron_state() { _release(); }
+
+      var::COLORS color();
+      void color(var::COLORS);
+
     private:
       unsigned *_buffer;
+      var::COLORS _color;
       void _initialize();
       void _release();
   };
 
+
+
   /**
    * A general purpose neuron that acts as a single node in a neural network.
    */
-  class neuron {
+  class neuron : public neural_object {
     public:
       neuron();
       ~neuron();
+      neuron_state state;
     private:
+      void _release();
       neuron_input _input;
       neuron_output _output;
-      neuron_state _state;
   };
 
 }
