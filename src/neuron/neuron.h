@@ -36,7 +36,7 @@ namespace anne {
     private:
       void _initialize();
       void _release();
-      std::vector<float>* _in;
+      //std::vector<float>* _in;
   };
 
   /**
@@ -59,10 +59,17 @@ namespace anne {
     public:
       neuron_state();
       ~neuron_state() { _release(); }
-
       var::COLORS color();
       void color(var::COLORS);
-
+      neuron_state(const neuron_state& ns) 
+        : _buffer(nullptr)
+      {
+        std::cerr<<"TODO copy\n";
+      }
+      neuron_state& operator=(const neuron_state& ns) {
+        std::cerr<<"TODO assignment\n";
+        return *this;
+      }
     private:
       unsigned *_buffer;
       var::COLORS _color;
@@ -92,8 +99,10 @@ namespace anne {
       n_net() {}
       ~n_net() {}
       void add(neuron&);
+      void add();
       bool remove(neuron&);
       void bfs(void(*cf)(neuron));
+      unsigned size() const;
     private:
       std::vector<neuron> _nodes;
   };

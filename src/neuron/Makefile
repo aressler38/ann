@@ -1,5 +1,5 @@
-C = g++
-Cflags = -Wall -std=c++11
+C=g++
+Cflags=-Wall -std=c++11
 
 all: clean
 	$(C) $(Cflags) -c neuron.cpp

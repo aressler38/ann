@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "../neuron/neuron.h"
+#include <iostream>
 
 namespace anne {
 
@@ -26,7 +27,7 @@ namespace anne {
       weight get_weight();
       void set_weight(weight&); // use for training too
       void connect(neuron&, neuron&);
-      void send(streambuf&);
+      void send(std::streambuf&);
 
     private:
       weight _weight;
