@@ -15,7 +15,7 @@ namespace anne {
 
   /* ==== neuron_input ==== */
 
-  void neuron_input::_initialize () { 
+  void neuron_input::_initialize () {
   }
 
   void neuron_input::_release () { }
@@ -23,13 +23,13 @@ namespace anne {
 
   /* ==== neuron_state ==== */
 
-  neuron_state::neuron_state () 
+  neuron_state::neuron_state ()
     : _buffer(nullptr),
       _color(var::GREEN)
-  { } 
+  { }
 
 
-  void neuron_state::_release () { 
+  void neuron_state::_release () {
     if ( _buffer ) {
       delete [] _buffer;
     }
@@ -48,8 +48,13 @@ namespace anne {
   /* ==== neuron ==== */
 
   neuron::neuron() { }
+
   void neuron::_release() { }
 
   neuron::~neuron() { }
+
+  void n_net::bfs(void(*cb)(neuron n)) { }
+
+  void n_net::add(neuron& n) { }
 
 }

@@ -12,12 +12,12 @@ namespace anne {
     enum COLORS { GREEN, BLUE, RED } ;
   }
 
-  /** 
-   * A generalized object of a neural network. 
-   * @abstract 
+  /**
+   * A generalized object of a neural network.
+   * @abstract
    */
   class neural_object {
-    public: 
+    public:
       neural_object() { }
       virtual ~neural_object() { }
       virtual void _release() = 0;
@@ -29,7 +29,7 @@ namespace anne {
    * @deprecated
    */
   class neuron_input : public neural_object {
-    public:  
+    public:
       neuron_input() : neural_object() { _initialize(); }
       ~neuron_input() { _release(); }
       friend std::istream& operator>> (std::istream&, neuron_input&);
@@ -56,7 +56,7 @@ namespace anne {
    * A neuron's state object that represents a given state of a neuron.
    */
   class neuron_state : public neural_object {
-    public:  
+    public:
       neuron_state();
       ~neuron_state() { _release(); }
 
@@ -70,8 +70,6 @@ namespace anne {
       void _release();
   };
 
-
-
   /**
    * A general purpose neuron that acts as a single node in a neural network.
    */
@@ -84,6 +82,20 @@ namespace anne {
       void _release();
       neuron_input _input;
       neuron_output _output;
+  };
+
+  /**
+   * A collection of neurons and dendrites.
+   */
+  class n_net {
+    public:
+      n_net() {}
+      ~n_net() {}
+      void add(neuron&);
+      bool remove(neuron&);
+      void bfs(void(*cf)(neuron));
+    private:
+      std::vector<neuron> _nodes;
   };
 
 }
