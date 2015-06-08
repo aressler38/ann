@@ -21,6 +21,9 @@ namespace anne {
     _weight.scalar = w.scalar;
   }
 
+  /**
+   * TODO: connect should take a varadict
+   */
   void dendrite::connect(neuron& n1, neuron& n2) {
     _n[0] = n1;
     _n[1] = n2;
