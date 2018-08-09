@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
-#include "../neuron/neuron.h"
-#include "../dendrite/dendrite.h"
+#include "../src/neuron/neuron.h"
+#include "../src/dendrite/dendrite.h"
 
 int main (int argc, char *argv[]) {
   using namespace std;

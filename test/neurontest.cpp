@@ -1,6 +1,6 @@
 #include <cassert>
 #include <iostream>
-#include "../neuron/neuron.h"
+#include "../src/neuron/neuron.h"
 
 #include <vector>
 
