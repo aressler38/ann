@@ -1,8 +1,12 @@
 CMock
 OpenCL-CLHPP
-Unity
+.deps
+.dirstamp
 
+lib
 bin
+*.o
+
 INSTALL
 COPYING
 Makefile
