@@ -9,7 +9,7 @@ namespace anne {
 
   /** Anything that acts like an enum variable goes in namespace var */
   namespace var {
-    enum COLORS { GREEN, BLUE, RED } ;
+    enum class COLORS { GREEN, BLUE, RED } ;
   }
 
   /**
@@ -73,7 +73,7 @@ namespace anne {
     private:
       unsigned *_buffer;
       var::COLORS _color;
-      void _initialize();
+      //void _initialize();
       void _release();
   };
 
@@ -94,19 +94,20 @@ namespace anne {
   /**
    * A collection of neurons and dendrites.
    */
-  class n_net {
+  class neural_net {
     public:
-      n_net() {}
-      ~n_net() {}
+      neural_net() {}
+      ~neural_net() {}
       void add(neuron&);
-      void add();
-      bool remove(neuron&);
-      void bfs(void(*cf)(neuron));
-      unsigned size() const;
+      //bool remove(neuron&);
+      void bfs(void(*cf)(neuron&));
+      size_t size() const;
     private:
       std::vector<neuron> _nodes;
   };
 
 }
+
+std::ostream& operator<<(std::ostream& os, anne::var::COLORS acolor);
 
 #endif

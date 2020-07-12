@@ -1,6 +1,16 @@
 #include "neuron.h"
 #include <iostream>
 
+std::ostream& operator<<(std::ostream& os, anne::var::COLORS acolor) {
+  switch (acolor) {
+  case anne::var::COLORS::GREEN:
+    os << "Green";
+  default:
+    os << "(unknown color)";
+  }
+  return os;
+}
+
 namespace anne {
 
   /* ==== neuron_output ==== */
@@ -20,7 +30,7 @@ namespace anne {
 
   neuron_state::neuron_state ()
     : _buffer(nullptr),
-      _color(var::GREEN)
+      _color(var::COLORS::GREEN)
   { }
 
 
@@ -40,6 +50,8 @@ namespace anne {
    */
   void neuron_state::color(var::COLORS c) { _color = c; }
 
+
+
   /* ==== neuron ==== */
 
   neuron::neuron() { }
@@ -48,16 +60,16 @@ namespace anne {
 
   neuron::~neuron() { }
 
-  void n_net::bfs(void(*cb)(neuron n)) { }
-
-  void n_net::add(neuron& n) { }
-
-  void n_net::add() {
-    neuron n;
+  void neural_net::add(neuron& n) { 
     _nodes.push_back(n);
   }
 
-  unsigned n_net::size() const {
+
+  void neural_net::bfs(void(*cf)(neuron&))
+  {
+  }
+
+  size_t neural_net::size() const {
     return _nodes.size();
   }
 
