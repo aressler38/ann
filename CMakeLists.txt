@@ -1,5 +1,4 @@
-cmake_minimum_required(VERSION "3.17.3")
-
+cmake_minimum_required(VERSION "3.17")
 
 project("anne")
 
@@ -9,21 +8,24 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
-add_definitions(
-    -DFOO="bar"
-)
+# The way to hook up boost is to install it on your system and then
+# set these two environment variables: BOOST_ROOT and BOOST_LIBRARYDIR.
+# Cmake has a findBoost module that reads those and hooks it up.
+# Example:
+# BOOST_ROOT=/path/to/boost_1_73_0
+# BOOST_LIBRARYDIR=/path/to/boost_1_73_0/lib64-msvc-14.1
+if(WIN32)
+message(STATUS "Using BOOST_ROOT: '$ENV{BOOST_ROOT}'")
+message(STATUS "Using BOOST_LIBRARYDIR: '$ENV{BOOST_LIBRARYDIR}'")
+endif()
 
+set(Boost_USE_STATIC_LIBS ON)
+find_package(Boost COMPONENTS unit_test_framework  REQUIRED)
 
-add_library("dendrite" STATIC "src/dendrite/dendrite.cpp")
-add_library("neuron" STATIC "src/neuron/neuron.cpp")
+add_subdirectory(src) 
 
-#add_executable("${PROJECT_NAME}" "src/main.cpp")
-add_executable("${PROJECT_NAME}-neuron-test" "test/neurontest.cpp")
-target_link_libraries("${PROJECT_NAME}-neuron-test" "neuron")
-
-add_executable("${PROJECT_NAME}-dendrite-test" "test/dendritetest.cpp")
-target_link_libraries("${PROJECT_NAME}-dendrite-test" "neuron")
-target_link_libraries("${PROJECT_NAME}-dendrite-test" "dendrite")
+enable_testing()
+add_subdirectory(test) 
 
 #install(TARGETS "${PROJECT_NAME}" DESTINATION bin)
 

@@ -8,8 +8,6 @@
 namespace anne {
 
 
-
-
   /**
    * A general purpose neuron that acts as a single node in a neural network.
    */
@@ -22,20 +20,6 @@ namespace anne {
       ~neuron();
     private:
       void _release();
-  };
-
-  /**
-   * A collection of neurons and dendrites.
-   */
-  class neural_net {
-    public:
-      neural_net() {}
-      ~neural_net() {}
-      void add(neuron&);
-      void bfs(void(*cf)(neuron&));
-      size_t size() const;
-    private:
-      std::vector<neuron> _nodes;
   };
 
 }
