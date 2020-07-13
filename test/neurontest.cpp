@@ -1,6 +1,11 @@
+#ifndef FOO
+#def FOO "NOT DEFINED"
+#endif
+
 #include <cassert>
 #include <iostream>
 #include "../src/neuron/neuron.h"
+
 
 #include <vector>
 
@@ -12,14 +17,15 @@ int main (int argc, char *argv[]) {
   {
     anne::neuron n0;
     cout << "COLORS\n======\n";
-    cout << "initial color: " << n0.state.color() << "\n";
-    n0.state.color(anne::var::COLORS::RED);
-    cout << "set to red: " << n0.state.color() << "\n";
-    n0.state.color(anne::var::COLORS::BLUE);
-    cout << "set to blue: " << n0.state.color() << "\n";
-    n0.state.color(anne::var::COLORS::GREEN);
-    cout << "set to green: " << n0.state.color() << "\n"
+    cout << "initial color: " << n0.color << "\n";
+    n0.color = anne::neuron::COLORS::RED;
+    cout << "set to red: " << n0.color << "\n";
+    n0.color = anne::neuron::COLORS::BLUE;
+    cout << "set to blue: " << n0.color << "\n";
+    n0.color = anne::neuron::COLORS::GREEN;
+    cout << "set to green: " << n0.color << "\n"
          << "\n";
+    cout << FOO << "\n";
   }
 
 
