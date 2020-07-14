@@ -28,5 +28,4 @@ namespace anne {
 
   neuron::~neuron() { }
 
-
 }

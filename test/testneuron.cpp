@@ -36,4 +36,28 @@ BOOST_AUTO_TEST_CASE(test_2)
 	std::cout << "OK: add test\n";
 }
 
+BOOST_AUTO_TEST_CASE(test_copy) {
+	class dummy {
+	public:
+		dummy() {
+			std::cout << "DUMMY CONSTRUCTOR\n";
+		}
+		dummy(const dummy &oth) {
+			std::cout << "DUMMY COPY CONST\n";
+		}
+		explicit dummy(dummy &&oth) noexcept {
+			std::cout << "DUMMY MOVE CONST\n";
+		}
+		~dummy() {
+			std::cout << "DUMMY DESTRUCTOR\n";
+		}
+	};
+
+
+	auto l = std::vector<dummy>();
+	std::cout << "test\n";
+	l.push_back(dummy());
+
+}
+
 BOOST_AUTO_TEST_SUITE_END()
