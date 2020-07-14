@@ -1,18 +1,27 @@
-
 include_directories(
-	${anne_SOURCE_DIR}/src
+	${PROJECT_SOURCE_DIR}/src
 	${Boost_INCLUDE_DIRS}
 )
 
-add_executable(neurontest neurontest.cpp)
-target_link_libraries(neurontest 
-    neuron
+
+add_executable(testdendrite testdendrite.cpp)
+target_link_libraries(testdendrite 
+	neuron
+	dendrite
+	${Boost_FILESYSTEM_LIBRARY}
+	${Boost_SYSTEM_LIBRARY}
 	${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
 	)
+add_test(NAME "DendriteTest" COMMAND testdendrite)
 
-#add_executable("dendritetest" "dendritetest.cpp")
-#target_link_libraries("dendritetest" "neuron")
-#target_link_libraries("dendritetest" "dendrite")
 
-#add_test(NAME "DendriteTest" COMMAND dendritetest)
-add_test(NAME "NeuronTest" COMMAND neurontest)
+add_executable(testneuron testneuron.cpp)
+target_link_libraries(testneuron 
+    neuron
+	${Boost_FILESYSTEM_LIBRARY}
+	${Boost_SYSTEM_LIBRARY}
+	${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
+	)
+add_test(NAME "NeuronTest" COMMAND testneuron)
+
+

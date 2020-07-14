@@ -20,7 +20,7 @@ message(STATUS "Using BOOST_LIBRARYDIR: '$ENV{BOOST_LIBRARYDIR}'")
 endif()
 
 set(Boost_USE_STATIC_LIBS ON)
-find_package(Boost COMPONENTS unit_test_framework  REQUIRED)
+find_package(Boost COMPONENTS system filesystem unit_test_framework  REQUIRED)
 
 add_subdirectory(src) 
 
