@@ -16,16 +16,16 @@ namespace anne {
 
       neural_net();
 			~neural_net();
+      neural_net& operator=(const neural_net& other) = delete;
 
-      void add(neuron&);
       size_t size() const;
 
       /** create a layer and add it to the layers */
-      layer_t& create_layer(size_t size);
+      void create_layer(size_t size);
 
     private:
-      std::vector<neuron> _nodes;
       layers_t _layers;
+      void _release();
   };
 
 }

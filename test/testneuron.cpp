@@ -1,6 +1,5 @@
 #define BOOST_TEST_MODULE NeuronTest
 
-#include "../src/neural_net/neural_net.h"
 #include "../src/neuron/neuron.h"
 #include <iostream>
 #include <vector>
@@ -25,17 +24,6 @@ BOOST_AUTO_TEST_CASE(test1)
 		<< "\n";
 }
 
-BOOST_AUTO_TEST_CASE(test_2)
-{
-	anne::neural_net net_0;
-	anne::neuron n0, n1, n2;
-	net_0.add(n0);
-	net_0.add(n1);
-	net_0.add(n2);
-	BOOST_TEST(net_0.size() == 3);
-	std::cout << "OK: add test\n";
-}
-
 BOOST_AUTO_TEST_CASE(test_copy) {
 	class dummy {
 	public:
@@ -45,7 +33,7 @@ BOOST_AUTO_TEST_CASE(test_copy) {
 		dummy(const dummy &oth) {
 			std::cout << "DUMMY COPY CONST\n";
 		}
-		explicit dummy(dummy &&oth) noexcept {
+		dummy(dummy&& oth) noexcept {
 			std::cout << "DUMMY MOVE CONST\n";
 		}
 		~dummy() {
@@ -54,9 +42,10 @@ BOOST_AUTO_TEST_CASE(test_copy) {
 	};
 
 
-	auto l = std::vector<dummy>();
 	std::cout << "test\n";
-	l.push_back(dummy());
+	auto l = std::vector<dummy>();
+	dummy d;
+	l.push_back(std::move(d));
 
 }
 

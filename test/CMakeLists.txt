@@ -25,3 +25,13 @@ target_link_libraries(testneuron
 add_test(NAME "NeuronTest" COMMAND testneuron)
 
 
+add_executable(testneural_net testneural_net.cpp)
+target_link_libraries(testneural_net 
+	neuron
+    neural_net
+	${Boost_FILESYSTEM_LIBRARY}
+	${Boost_SYSTEM_LIBRARY}
+	${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
+	)
+add_test(NAME "NeuralNetTest" COMMAND testneural_net)
+

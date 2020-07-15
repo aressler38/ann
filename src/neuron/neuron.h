@@ -17,7 +17,12 @@ namespace anne {
       COLORS color;
 
       neuron();
+      neuron(neuron&&);
       ~neuron();
+
+      neuron& neuron::operator=(const neuron&);
+      neuron& neuron::operator=(neuron&&);
+
     private:
       void _release();
   };
