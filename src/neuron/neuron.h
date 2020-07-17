@@ -14,17 +14,29 @@ namespace anne {
   class neuron {
     public:
 	    enum class COLORS { GREEN, BLUE, RED } ;
+
+      class connection {
+				public:
+          connection(neuron*, double);
+          ~connection();
+          connection& connection::operator=(const connection&);
+					neuron * next;
+					double factor;
+      };
+
       COLORS color;
 
-      neuron();
-      neuron(neuron&&);
       ~neuron();
-
+      neuron();
+      neuron(neuron&&) noexcept;
       neuron& neuron::operator=(const neuron&);
-      neuron& neuron::operator=(neuron&&);
+      neuron& neuron::operator=(neuron&&) noexcept;
+
+      void connect(neuron&);
 
     private:
       void _release();
+      std::vector<connection> _connections;
   };
 
 }

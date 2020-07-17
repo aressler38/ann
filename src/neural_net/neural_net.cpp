@@ -29,7 +29,6 @@ namespace anne {
 
     layer.reserve(size);
 
-
 		for (int i = 0; i < size; ++i) {
       auto n = neuron();
 			layer.push_back(std::move(n));

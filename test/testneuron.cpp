@@ -49,4 +49,11 @@ BOOST_AUTO_TEST_CASE(test_copy) {
 
 }
 
+
+BOOST_AUTO_TEST_CASE(test_connect) {
+	anne::neuron n0, n1;
+
+	n0.connect(n1);
+}
+
 BOOST_AUTO_TEST_SUITE_END()

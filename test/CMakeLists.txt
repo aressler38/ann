@@ -4,17 +4,6 @@ include_directories(
 )
 
 
-add_executable(testdendrite testdendrite.cpp)
-target_link_libraries(testdendrite 
-	neuron
-	dendrite
-	${Boost_FILESYSTEM_LIBRARY}
-	${Boost_SYSTEM_LIBRARY}
-	${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
-	)
-add_test(NAME "DendriteTest" COMMAND testdendrite)
-
-
 add_executable(testneuron testneuron.cpp)
 target_link_libraries(testneuron 
     neuron
