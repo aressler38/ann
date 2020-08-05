@@ -5,7 +5,7 @@ include_directories(
 
 
 add_executable(testneuron testneuron.cpp)
-target_link_libraries(testneuron 
+target_link_libraries(testneuron
     neuron
 	${Boost_FILESYSTEM_LIBRARY}
 	${Boost_SYSTEM_LIBRARY}

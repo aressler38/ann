@@ -4,6 +4,7 @@
 #include <iostream>
 #include <streambuf>
 #include <vector>
+#include <functional>
 
 namespace anne {
 
@@ -13,34 +14,45 @@ namespace anne {
    */
   class neuron {
     public:
-	    enum class COLORS { GREEN, BLUE, RED } ;
+	    enum class STATES {
+        ACCEPTING_INPUT,
+        COMPLETE
+      };
 
       class connection {
 				public:
           connection(neuron*, double);
           ~connection();
-          connection& connection::operator=(const connection&);
-					neuron * next;
+          connection& connection::operator=(const connection&) = delete;
+          neuron * next;
 					double factor;
       };
 
-      COLORS color;
+      STATES state;
+
+      std::vector<double> input;
+      double output;
+      std::vector<connection> connections;
 
       ~neuron();
       neuron();
+      neuron(double processor(const std::vector<double>));
       neuron(neuron&&) noexcept;
       neuron& neuron::operator=(const neuron&);
       neuron& neuron::operator=(neuron&&) noexcept;
 
       void connect(neuron&);
+      void connect(neuron&, const double);
+      void process_input();
 
     private:
       void _release();
-      std::vector<connection> _connections;
+      std::function<double(std::vector<double>)> _processor;
   };
 
 }
 
-std::ostream& operator<<(std::ostream& os, anne::neuron::COLORS acolor);
+std::ostream& operator<<(std::ostream& os, const anne::neuron::STATES&);
+std::ostream& operator<<(std::ostream& os, const anne::neuron&);
 
 #endif
